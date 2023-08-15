@@ -398,7 +398,6 @@ public class Details extends AppCompatActivity {
         url = "https://api.tiingo.com/iex?tickers=" + query + "&token=b4e95182bcfae3fa31c6d095f26de94e3514a17b";
         JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest
                 (Request.Method.GET, url, null, response -> {
-//[{"timestamp":"2020-11-25T21:00:00+00:00","bidSize":null,"lastSaleTimestamp":"2020-11-25T21:00:00+00:00","low":3140.26,"bidPrice":null,"prevClose":3118.06,"quoteTimestamp":"2020-11-25T21:00:00+00:00","last":3185.07,"askSize":null,"volume":3790403,"lastSize":null,"ticker":"AMZN","high":3198,"mid":null,"askPrice":null,"open":3141.87,"tngoLast":3185.07}]
                     try {
                         JSONObject response1 = response.getJSONObject(0);
 

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_HW9);
+        setTheme(R.style.Theme_Assign4);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.tiingo).setOnClickListener(v -> {
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         portSectionAdapter = new RecyclerViewAdapter(stocks, this, false);
         favSectionAdapter = new RecyclerViewAdapter(favStocks, this, true);
 
-        // Set up your RecyclerView with the SectionedRecyclerViewAdapter
         RecyclerView portRecyclerView = findViewById(R.id.recyclerview);
         portRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         portRecyclerView.setAdapter(portSectionAdapter);
@@ -207,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest
                 (Request.Method.GET, url, null, response -> {
                     Log.d("Response: ", response.toString());
-//[{"timestamp":"2020-11-25T21:00:00+00:00","bidSize":null,"lastSaleTimestamp":"2020-11-25T21:00:00+00:00","low":3140.26,"bidPrice":null,"prevClose":3118.06,"quoteTimestamp":"2020-11-25T21:00:00+00:00","last":3185.07,"askSize":null,"volume":3790403,"lastSize":null,"ticker":"AMZN","high":3198,"mid":null,"askPrice":null,"open":3141.87,"tngoLast":3185.07}]
                     try {
 
                         double totalInShares = 0;
@@ -278,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(jsonArrayRequest1);
 
-//        handler.postDelayed(() -> fetchDetails(stocks, favStocks, portSectionAdapter, favSectionAdapter), 15000);
 
     }
 

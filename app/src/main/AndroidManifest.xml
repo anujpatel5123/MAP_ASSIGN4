@@ -11,12 +11,12 @@
         android:logo="@mipmap/ic_launcher_round"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HW9"
+        android:theme="@style/Theme.Assign4"
         android:usesCleartextTraffic="true">
         <activity android:name="com.Assign4.stocks.Details"></activity>
         <activity
             android:name="com.Assign4.stocks.MainActivity"
-            android:theme="@style/Theme.HW9.Laucher">
+            android:theme="@style/Theme.Assign4.Laucher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
