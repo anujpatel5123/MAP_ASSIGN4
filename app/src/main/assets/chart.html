@@ -1,0 +1,134 @@
+<!DOCTYPE HTML lang="en" >
+<head>
+    <meta charset="utf-8"/>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+</head>
+<body style="
+background-color: #FBF9FC;
+">
+<div class="chart" id="chart_1" style="background-color: #FBF9FC;height: 300px;"></div>
+<script type='text/javascript'>
+
+   var ticker = "";
+
+   function setTick(query){
+    ticker = query;
+   }
+
+   var chart;
+
+   function loadChart(data) {
+
+    var ohlc = [],
+        volume = [],
+        dataLength = data.length,
+        i = 0;
+
+    for (i; i < dataLength; i += 1) {
+        var date = new Date(data[i].date);
+        var milliseconds = date.getTime();
+        ohlc.push([
+            milliseconds, // the date
+            data[i].open, // open
+            data[i].high, // high
+            data[i].low, // low
+            data[i].close // close
+        ]);
+
+        volume.push([
+            milliseconds, // the date
+            data[i].volume // the volume
+        ]);
+    }
+
+
+    chart = Highcharts.stockChart('chart_1', {
+      chart: {
+          backgroundColor: '#FBF9FC'
+      },
+      rangeSelector: {
+          selected: 2
+      },
+      time: {
+          useUTC: false,
+      },
+      yAxis: [{
+          startOnTick: false,
+          endOnTick: false,
+          labels: {
+              align: 'right',
+              x: -3
+          },
+          title: {
+              text: 'OHLC'
+          },
+          height: '60%',
+          lineWidth: 2,
+          resize: {
+              enabled: true
+          }
+      }, {
+          labels: {
+              align: 'right',
+              x: -3
+          },
+          title: {
+              text: 'Volume'
+          },
+          top: '65%',
+          height: '35%',
+          offset: 0,
+          lineWidth: 2
+      }],
+      tooltip: {
+          split: true
+      },
+      series: [{
+          type: 'candlestick',
+          name: ticker,
+          id: ticker,
+          zIndex: 2,
+          data: ohlc
+      }, {
+          type: 'column',
+          name: 'Volume',
+          id: 'volume',
+          data: volume,
+          yAxis: 1
+      }, {
+          type: 'vbp',
+          linkedTo: ticker,
+          params: {
+              volumeSeriesID: 'volume'
+          },
+          dataLabels: {
+              enabled: false
+          },
+          zoneLines: {
+              enabled: false
+          }
+      }, {
+          type: 'sma',
+          linkedTo: ticker,
+          zIndex: 1,
+          marker: {
+              enabled: false
+          }
+      }]
+      });
+
+      chart.reflow();
+
+};
+
+
+
+
+</script>
+</body>
